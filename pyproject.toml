@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "firebase-messaging"
+version = "0.1.0"
+description = ""
+authors = ["Massimo Costa <costa.massimo@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+firebase-admin = "^6.4.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
