@@ -10,6 +10,7 @@ Chrome Extension that register to firebase cloud messaging and prints received m
 You can build with
 
 ```sh
+$ cd ChromeExtension
 $ npm i
 $ npm run build
 ```
@@ -21,21 +22,40 @@ Once started you can open the service worker console and you'll see a line like
 FCM token <registration-token>
 ```
 
-## Server
+## Message Sender
 
 Simple application to send a notification message to the extension
 
 You can prepare the environment with 
-```
+```sh
 $ poetry install
 ```
 
  And then run with 
- ```
- GOOGLE_APPLICATION_CREDENTIALS=<credentials-file-path> poetry run python ./main.py <registration-token>
+ ```sh
+ GOOGLE_APPLICATION_CREDENTIALS=<credentials-file-path> poetry run python ./message_sender/main.py <registration-token>
  ```
 
 Once the message is sent you'll in the extension log something like
-```
+```sh
 Message received: {..., notification: { body: "Hello again", title: "Hello" }, ...}
+```
+
+## Get App Config
+
+Simple application to retrieve web app configuration to send to the extension
+
+You can prepare the environment with 
+```sh
+$ poetry install
+```
+
+ And then run with 
+ ```sh
+ GOOGLE_APPLICATION_CREDENTIALS=<credentials-file-path> poetry run python ./get_app_config/main.py
+ ```
+
+The output should be something similar
+```sh
+Config: {'projectId': <project-id>, 'appId': <app-id>, ..., 'apiKey': <api-key>, ..., 'messagingSenderId': <sender-id>}
 ```
