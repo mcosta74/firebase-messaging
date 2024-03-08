@@ -1,7 +1,8 @@
 import sys
+import json
 
 import firebase_admin
-from firebase_admin import project_management
+from firebase_admin import project_management, credentials
 
 
 class WebApp:
@@ -48,12 +49,17 @@ class WebAppsService(project_management._ProjectManagementService):
 
 
 def main(args: list[str]):
-    app = firebase_admin.initialize_app()
+    creds = None
+    if len(args) > 0:
+        with open(args[0], 'r') as conf_file:
+            creds = credentials.Certificate(json.load(conf_file))
+            
+    app = firebase_admin.initialize_app(creds)
 
     svc = WebAppsService(app=app)
     apps = svc.list_web_apps()
 
-    for app in apps:
+    for app in apps[:1]:
         print('Config:', app.get_config())
 
 

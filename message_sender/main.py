@@ -15,6 +15,7 @@ def main(args: list[str]):
             title='Hello',
             body='Hello again',
         ),
+        data={"topic": "verify"},
         token=registration_token,
     )
 
